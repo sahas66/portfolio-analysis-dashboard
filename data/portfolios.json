@@ -1,0 +1,20 @@
+{
+  "portfolios": [
+    {
+      "id": "A",
+      "name": "Portfolio A",
+      "startingBalance": 10000,
+      "cashBalance": 10000,
+      "holdings": [],
+      "transactions": []
+    },
+    {
+      "id": "B",
+      "name": "Portfolio B",
+      "startingBalance": 10000,
+      "cashBalance": 10000,
+      "holdings": [],
+      "transactions": []
+    }
+  ]
+}
