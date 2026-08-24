@@ -1,7 +1,10 @@
 # portfolio-analysis-dashboard
 
 IB Personal Project — a static site comparing two simulated investment
-strategies, Portfolio A and Portfolio B.
+strategies, Portfolio A (long-term buy-and-hold) and Portfolio B
+(short-term rules-based trading), executed using the Investopedia Stock
+Simulator rather than a live trading API. No backend or price-fetch
+service is used — trades and prices are entered manually from Investopedia.
 
 ## Setup
 
