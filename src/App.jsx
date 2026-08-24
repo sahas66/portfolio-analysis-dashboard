@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL ?? '';
+
 const currency = (n) =>
   n == null ? '—' : n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
@@ -55,8 +57,8 @@ export default function App() {
   async function load() {
     try {
       const [pRes, priceRes] = await Promise.all([
-        fetch('/api/portfolios'),
-        fetch('/api/prices'),
+        fetch(`${API_URL}/api/portfolios`),
+        fetch(`${API_URL}/api/prices`),
       ]);
       if (!pRes.ok || !priceRes.ok) throw new Error('API request failed');
       const pData = await pRes.json();
@@ -76,7 +78,7 @@ export default function App() {
   async function refreshPrices() {
     setError(null);
     try {
-      const res = await fetch('/api/prices/refresh', { method: 'POST' });
+      const res = await fetch(`${API_URL}/api/prices/refresh`, { method: 'POST' });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to refresh prices');
       await load();
