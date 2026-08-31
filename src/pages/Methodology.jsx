@@ -41,6 +41,16 @@ export default function Methodology() {
         the actual portfolio experiment and trading rules only began on
         August 24, 2026.
       </p>
+
+      <p>
+        The Results page's backtested comparison applies both portfolios'
+        rules retroactively to that same mid-July real price data, assuming
+        each portfolio starts with 10 shares of every asset, that a sold
+        position stays sold rather than being bought back later, that
+        Portfolio B's buy-more signal adds one share at a time paid for only
+        out of cash Portfolio B has freed up by selling elsewhere, and that a
+        5-day average needs 5 prior trading days before it can trigger a buy.
+      </p>
     </section>
   );
 }
