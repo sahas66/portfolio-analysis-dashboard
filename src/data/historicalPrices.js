@@ -105,6 +105,3 @@ export const historicalPrices = {
     ['2026-08-28', 178.64],
   ],
 };
-
-// The date positions were funded and trading rules took effect (Portfolio A/B start).
-export const EXPERIMENT_START_DATE = '2026-08-24';

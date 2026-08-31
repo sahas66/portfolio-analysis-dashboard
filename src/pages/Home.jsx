@@ -12,7 +12,7 @@ export default function Home() {
         financial risk.
       </p>
       <p>
-        Both portfolios started with $100,000 on August 24, 2026. I
+        Both portfolios started with $100,000 on July 14, 2026. I
         invested $25,000 evenly across the same 7 stocks and ETFs in each
         portfolio, and kept the remaining $75,000 as cash. Keeping the two
         portfolios identical at the start was intentional, and it means any

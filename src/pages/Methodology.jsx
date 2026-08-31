@@ -12,7 +12,7 @@ export default function Methodology() {
       </p>
 
       <p>
-        I started both portfolios with $100,000 on August 24, 2026. I
+        I started both portfolios with $100,000 on July 14, 2026. I
         split $25,000 evenly across 7 stocks and ETFs: VOO, BND, AAPL,
         JNJ, PG, XOM, and COIN. About $3,571 went into each one. I
         kept the other $75,000 as cash.
@@ -37,16 +37,20 @@ export default function Methodology() {
       </p>
 
       <p>
-        I also added a chart of real price history from mid-July 2026
-        onward for all 7 stocks, just for context. The actual experiment
-        with my trading rules didn't start until August 24, 2026.
+        I also added a chart of real price history starting July 14, 2026,
+        for all 7 stocks. It uses real market prices for context, separate
+        from my actual tracked results, which I add by hand from
+        Investopedia on the Results page.
       </p>
 
       <p>
-        I also built a "backtest" that runs both portfolios' rules on that
-        same real price data starting mid-July, just to see what
-        would've happened. For the backtest, I had to make a few
-        decisions since my rules didn't cover everything:
+        I also built a "backtest" that runs both portfolios' rules
+        automatically on that same real price data, day by day starting
+        July 14, just to see what would've happened. It's different from
+        my real results because my actual trades are checked and made by
+        hand once a week, not simulated every single day. For the
+        backtest, I had to make a few decisions since my rules didn't
+        cover everything:
       </p>
       <ul>
         <li>Each portfolio starts with 10 shares of each stock (same as my real trades)</li>

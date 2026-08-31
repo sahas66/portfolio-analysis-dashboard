@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { historicalPrices, EXPERIMENT_START_DATE } from '../data/historicalPrices.js';
+import { historicalPrices } from '../data/historicalPrices.js';
 
 const WIDTH = 720;
 const HEIGHT = 360;
@@ -59,9 +59,6 @@ export default function HistoricalPriceChart() {
 
   const tickIndices = Array.from(new Set([0, Math.round((n - 1) / 4), Math.round((n - 1) / 2), Math.round(((n - 1) * 3) / 4), n - 1]));
 
-  const startIndex = dates.findIndex((d) => d >= EXPERIMENT_START_DATE);
-  const startX = startIndex >= 0 ? xScale(startIndex) : null;
-
   const toggle = (ticker) => {
     setVisible((prev) => {
       const next = new Set(prev);
@@ -78,10 +75,10 @@ export default function HistoricalPriceChart() {
   return (
     <div className="card">
       <p className="chart-caption">
-        This is real price data from mid-July 2026 up to now, just so you can see what
-        the market was doing before I actually started trading. I didn't fund Portfolio A
-        (Long-Term) and Portfolio B (Short-Term) until August 24, 2026. Everything before
-        that is just background, not part of the actual experiment.
+        This is real price data starting July 14, 2026, which is when I actually funded
+        Portfolio A (Long-Term) and Portfolio B (Short-Term) and started applying my
+        trading rules. It's just the real market prices for context, separate from my
+        actual tracked results, which I add by hand from Investopedia on the Results page.
       </p>
 
       <div className="ticker-toggle" role="group" aria-label="Show or hide tickers">
@@ -132,22 +129,6 @@ export default function HistoricalPriceChart() {
             {formatDate(dates[i])}
           </text>
         ))}
-
-        {startX != null && (
-          <>
-            <line
-              x1={startX}
-              y1={PAD_TOP}
-              x2={startX}
-              y2={HEIGHT - PAD_BOTTOM}
-              stroke="#666"
-              strokeDasharray="4 3"
-            />
-            <text x={startX + 6} y={PAD_TOP + 10} fontSize="11" style={{ fill: '#666' }}>
-              Experiment start (Aug 24)
-            </text>
-          </>
-        )}
 
         {series
           .filter((s) => visible.has(s.ticker))
