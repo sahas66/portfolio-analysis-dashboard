@@ -4,8 +4,9 @@ export default function Home() {
       <h1>Portfolio Analysis Dashboard</h1>
       <p>
         Description of IB Personal Project: My aim was to discover if
-        actively trading stocks based on a set rule (Portfolio B) actually
-        outperforms a simple buy-and-hold approach (Portfolio A) over time.
+        actively trading stocks based on a set rule (Portfolio B, Short-Term)
+        actually outperforms a simple buy-and-hold approach (Portfolio A,
+        Long-Term) over time.
         I'm testing this using the Investopedia Stock Simulator, so all the
         trades use real market prices but simulated money, and no actual
         financial risk.

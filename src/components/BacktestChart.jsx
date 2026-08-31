@@ -41,18 +41,18 @@ export default function BacktestChart() {
   return (
     <div className="card">
       <p className="chart-caption">
-        This chart shows what would've happened if I'd applied my Portfolio A and B rules
-        starting from mid-July 2026, using real prices. It's a backtest, not my actual
-        tracked results — the real experiment didn't start until August 24, 2026. Also, this
-        only tracks the ~$17,852 that went into 10 shares of each stock, not the full $25,000
-        I actually invested — 10 shares doesn't split evenly to $3,571 per stock the way my
-        real trades did.
+        This chart shows what would've happened if I'd applied my Portfolio A (Long-Term)
+        and Portfolio B (Short-Term) rules starting from mid-July 2026, using real prices.
+        It's a backtest, not my actual tracked results — the real experiment didn't start
+        until August 24, 2026. Also, this only tracks the ~$17,852 that went into 10 shares
+        of each stock, not the full $25,000 I actually invested — 10 shares doesn't split
+        evenly to $3,571 per stock the way my real trades did.
       </p>
 
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
-        aria-label={`Backtested Portfolio A and Portfolio B value, mid-July 2026 to present. Final Portfolio A: ${currency(finalA)}. Final Portfolio B: ${currency(finalB)}.`}
+        aria-label={`Backtested Portfolio A (Long-Term) and Portfolio B (Short-Term) value, mid-July 2026 to present. Final Portfolio A (Long-Term): ${currency(finalA)}. Final Portfolio B (Short-Term): ${currency(finalB)}.`}
       >
         {gridValues.map((v) => (
           <g key={v}>
@@ -87,11 +87,11 @@ export default function BacktestChart() {
         <g>
           <circle cx={PAD_LEFT} cy="14" r="4" fill="#2563eb" />
           <text x={PAD_LEFT + 10} y="18" fontSize="12">
-            Portfolio A ({currency(finalA)})
+            Portfolio A (Long-Term) — {currency(finalA)}
           </text>
-          <circle cx={PAD_LEFT + 190} cy="14" r="4" fill="#dc2626" />
-          <text x={PAD_LEFT + 200} y="18" fontSize="12">
-            Portfolio B ({currency(finalB)})
+          <circle cx={PAD_LEFT} cy="32" r="4" fill="#dc2626" />
+          <text x={PAD_LEFT + 10} y="36" fontSize="12">
+            Portfolio B (Short-Term) — {currency(finalB)}
           </text>
         </g>
       </svg>

@@ -31,10 +31,10 @@ export default function ResultsChart({ rows }) {
       <path d={buildPath(rows, 'portfolioA', xScale, yScale)} fill="none" stroke="#2563eb" strokeWidth="2" />
       <path d={buildPath(rows, 'portfolioB', xScale, yScale)} fill="none" stroke="#dc2626" strokeWidth="2" />
       <g className="chart-legend">
-        <circle cx={WIDTH - 140} cy={PADDING} r="4" fill="#2563eb" />
-        <text x={WIDTH - 130} y={PADDING + 4} fontSize="12">Portfolio A</text>
-        <circle cx={WIDTH - 140} cy={PADDING + 18} r="4" fill="#dc2626" />
-        <text x={WIDTH - 130} y={PADDING + 22} fontSize="12">Portfolio B</text>
+        <circle cx={WIDTH - 200} cy={PADDING} r="4" fill="#2563eb" />
+        <text x={WIDTH - 190} y={PADDING + 4} fontSize="12">Portfolio A (Long-Term)</text>
+        <circle cx={WIDTH - 200} cy={PADDING + 18} r="4" fill="#dc2626" />
+        <text x={WIDTH - 190} y={PADDING + 22} fontSize="12">Portfolio B (Short-Term)</text>
       </g>
     </svg>
   );

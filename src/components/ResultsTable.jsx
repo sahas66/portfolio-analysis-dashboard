@@ -9,8 +9,8 @@ export default function ResultsTable({ rows }) {
       <thead>
         <tr>
           <th>Date</th>
-          <th>Portfolio A</th>
-          <th>Portfolio B</th>
+          <th>Portfolio A (Long-Term)</th>
+          <th>Portfolio B (Short-Term)</th>
         </tr>
       </thead>
       <tbody>

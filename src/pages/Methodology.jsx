@@ -5,8 +5,9 @@ export default function Methodology() {
 
       <p>
         For my IB Personal Project, I'm comparing two ways of investing:
-        just buying and holding (Portfolio A) vs. actively trading based
-        on some rules I set (Portfolio B). I'm doing this on the
+        just buying and holding (Portfolio A, Long-Term) vs. actively
+        trading based on some rules I set (Portfolio B, Short-Term). I'm
+        doing this on the
         Investopedia Stock Simulator so I don't need real money.
       </p>
 
@@ -17,13 +18,13 @@ export default function Methodology() {
         kept the other $75,000 as cash.
       </p>
 
-      <h2>Portfolio A</h2>
+      <h2>Portfolio A (Long-Term)</h2>
       <p>
         I just hold these and don't trade them. The only rule: if a stock
         drops 15% or more below what I paid for it, I'm allowed to sell it.
       </p>
 
-      <h2>Portfolio B</h2>
+      <h2>Portfolio B (Short-Term)</h2>
       <p>
         This one follows a simple rule I made up: buy more of a stock if
         it's priced below its own 5-day average, and sell it once it goes
@@ -50,7 +51,7 @@ export default function Methodology() {
       <ul>
         <li>Each portfolio starts with 10 shares of each stock (same as my real trades)</li>
         <li>Once I sell something, I don't buy it back later</li>
-        <li>Portfolio B only buys more shares using cash freed up from its own sells — not new money</li>
+        <li>Portfolio B (Short-Term) only buys more shares using cash freed up from its own sells — not new money</li>
         <li>I need 5 days of price history before the 5-day-average rule can even apply</li>
       </ul>
     </section>
