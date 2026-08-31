@@ -16,7 +16,7 @@ export default function App() {
   const Page = PAGES[page];
 
   return (
-    <>
+    <div className="app-shell">
       <nav>
         {Object.keys(PAGES).map((name) => (
           <button
@@ -31,6 +31,6 @@ export default function App() {
       <main>
         <Page />
       </main>
-    </>
+    </div>
   );
 }

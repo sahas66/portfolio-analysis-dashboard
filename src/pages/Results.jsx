@@ -11,8 +11,10 @@ export default function Results() {
         Data below is filled in manually from Investopedia — edit{' '}
         <code>src/data/results.js</code> to add rows.
       </p>
-      <ResultsChart rows={results} />
-      <ResultsTable rows={results} />
+      <div className="card">
+        <ResultsChart rows={results} />
+        <ResultsTable rows={results} />
+      </div>
 
       <h2>Historical Price Context</h2>
       <HistoricalPriceChart />
