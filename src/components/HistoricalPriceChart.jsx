@@ -12,13 +12,13 @@ const GRID_LINES = 5;
 const TICKERS = Object.keys(historicalPrices);
 
 const COLORS = {
-  VOO: '#5b8cff',
-  BND: '#f0725f',
-  AAPL: '#34d399',
-  JNJ: '#fbbf24',
-  PG: '#c084fc',
-  XOM: '#f472b6',
-  COIN: '#22d3ee',
+  VOO: '#2563eb',
+  BND: '#dc2626',
+  AAPL: '#16a34a',
+  JNJ: '#eab308',
+  PG: '#9333ea',
+  XOM: '#db2777',
+  COIN: '#0891b2',
 };
 
 const formatDate = (iso) => {
@@ -78,10 +78,10 @@ export default function HistoricalPriceChart() {
   return (
     <div className="card">
       <p className="chart-caption">
-        Historical price context: real market data from mid-July 2026 to present.
-        Portfolio A and B were funded and positions established on August 24, 2026 —
-        prices shown before that date are historical market context, not part of the
-        experiment.
+        This is real price data from mid-July 2026 up to now, just so you can see what
+        the market was doing before I actually started trading. I didn't fund Portfolio
+        A and B until August 24, 2026 — everything before that is just background, not
+        part of the actual experiment.
       </p>
 
       <div className="ticker-toggle" role="group" aria-label="Show or hide tickers">
@@ -112,8 +112,7 @@ export default function HistoricalPriceChart() {
               y1={yScale(v)}
               x2={WIDTH - PAD_RIGHT}
               y2={yScale(v)}
-              stroke={Math.abs(v) < 1e-6 ? 'var(--border)' : 'var(--border-soft)'}
-              strokeWidth={Math.abs(v) < 1e-6 ? 1.25 : 1}
+              stroke="#8884"
             />
             <text x={PAD_LEFT - 8} y={yScale(v) + 4} fontSize="11" textAnchor="end">
               {v > 0 ? '+' : ''}
@@ -141,11 +140,10 @@ export default function HistoricalPriceChart() {
               y1={PAD_TOP}
               x2={startX}
               y2={HEIGHT - PAD_BOTTOM}
-              stroke="var(--positive)"
-              strokeWidth="1.5"
+              stroke="#666"
               strokeDasharray="4 3"
             />
-            <text x={startX + 6} y={PAD_TOP + 10} fontSize="11" style={{ fill: 'var(--positive)' }}>
+            <text x={startX + 6} y={PAD_TOP + 10} fontSize="11" style={{ fill: '#666' }}>
               Experiment start (Aug 24)
             </text>
           </>
@@ -160,11 +158,10 @@ export default function HistoricalPriceChart() {
               fill="none"
               stroke={COLORS[s.ticker]}
               strokeWidth="2"
-              strokeLinejoin="round"
             />
           ))}
       </svg>
-      <p className="chart-axis-label">Y-axis: cumulative % change in closing price since Jul 14, 2026</p>
+      <p className="chart-axis-label">Y-axis is % change in price since Jul 14, 2026, not the actual dollar price.</p>
     </div>
   );
 }

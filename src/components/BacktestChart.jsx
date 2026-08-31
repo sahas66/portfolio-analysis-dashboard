@@ -41,10 +41,9 @@ export default function BacktestChart() {
   return (
     <div className="card">
       <p className="chart-caption">
-        Backtested comparison: shows what each strategy's rules would have produced if applied
-        to real market prices from mid-July 2026 onward. This is a retrospective calculation
-        using real prices and the project's fixed trading rules — not the live tracked
-        experiment, which began August 24, 2026.
+        This chart shows what would've happened if I'd applied my Portfolio A and B rules
+        starting from mid-July 2026, using real prices. It's a backtest, not my actual
+        tracked results — the real experiment didn't start until August 24, 2026.
       </p>
 
       <svg
@@ -59,8 +58,7 @@ export default function BacktestChart() {
               y1={yScale(v)}
               x2={WIDTH - PAD_RIGHT}
               y2={yScale(v)}
-              stroke="var(--border-soft)"
-              strokeWidth="1"
+              stroke="#8884"
             />
             <text x={PAD_LEFT - 8} y={yScale(v) + 4} fontSize="11" textAnchor="end">
               {currency(v)}
@@ -80,22 +78,22 @@ export default function BacktestChart() {
           </text>
         ))}
 
-        <path d={buildPath(portfolioA)} fill="none" stroke="var(--portfolio-a)" strokeWidth="2" strokeLinejoin="round" />
-        <path d={buildPath(portfolioB)} fill="none" stroke="var(--portfolio-b)" strokeWidth="2" strokeLinejoin="round" />
+        <path d={buildPath(portfolioA)} fill="none" stroke="#2563eb" strokeWidth="2" />
+        <path d={buildPath(portfolioB)} fill="none" stroke="#dc2626" strokeWidth="2" />
 
         <g>
-          <circle cx={PAD_LEFT} cy="14" r="4" fill="var(--portfolio-a)" />
+          <circle cx={PAD_LEFT} cy="14" r="4" fill="#2563eb" />
           <text x={PAD_LEFT + 10} y="18" fontSize="12">
             Portfolio A ({currency(finalA)})
           </text>
-          <circle cx={PAD_LEFT + 190} cy="14" r="4" fill="var(--portfolio-b)" />
+          <circle cx={PAD_LEFT + 190} cy="14" r="4" fill="#dc2626" />
           <text x={PAD_LEFT + 200} y="18" fontSize="12">
             Portfolio B ({currency(finalB)})
           </text>
         </g>
       </svg>
       <p className="chart-axis-label">
-        Starting value: {currency(portfolioA[0])} (10 shares each of VOO, BND, AAPL, JNJ, PG, XOM, COIN)
+        Both start at {currency(portfolioA[0])} — 10 shares each of VOO, BND, AAPL, JNJ, PG, XOM, COIN.
       </p>
     </div>
   );

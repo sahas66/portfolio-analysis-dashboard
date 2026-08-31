@@ -9,18 +9,19 @@ export default function Results() {
     <section>
       <h1>Results</h1>
       <p className="placeholder">
-        Data below is filled in manually from Investopedia — edit{' '}
-        <code>src/data/results.js</code> to add rows.
+        I add this data by hand from Investopedia, so it's not here yet —
+        I'll edit <code>src/data/results.js</code> once I actually have
+        results to add.
       </p>
       <div className="card">
         <ResultsChart rows={results} />
         <ResultsTable rows={results} />
       </div>
 
-      <h2>Backtested Strategy Comparison</h2>
+      <h2>Backtest: what my rules would've done</h2>
       <BacktestChart />
 
-      <h2>Historical Price Context</h2>
+      <h2>Real price history (for context)</h2>
       <HistoricalPriceChart />
     </section>
   );

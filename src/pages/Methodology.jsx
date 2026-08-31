@@ -4,53 +4,55 @@ export default function Methodology() {
       <h1>Methodology</h1>
 
       <p>
-        Portfolio Analysis Dashboard is an IB Personal Project comparing a
-        long-term buy-and-hold strategy (Portfolio A) against a short-term
-        rules-based trading strategy (Portfolio B), simulated using the
-        Investopedia Stock Simulator.
+        For my IB Personal Project, I'm comparing two ways of investing:
+        just buying and holding (Portfolio A) vs. actively trading based
+        on some rules I set (Portfolio B). I'm doing this on the
+        Investopedia Stock Simulator so I don't need real money.
       </p>
 
       <p>
-        Both portfolios started with $100,000, of which $25,000 was invested
-        equally across 7 assets on August 24, 2026: VOO, BND, AAPL, JNJ, PG,
-        XOM, and COIN (approximately $3,571 per asset), with the remaining
-        $75,000 held in cash.
+        I started both portfolios with $100,000 on August 24, 2026. I
+        split $25,000 evenly across 7 stocks and ETFs — VOO, BND, AAPL,
+        JNJ, PG, XOM, and COIN — so about $3,571 went into each one. I
+        kept the other $75,000 as cash.
       </p>
 
       <h2>Portfolio A</h2>
       <p>
-        Holds these positions without active trading, except a risk rule:
-        any position falling 15% or more below entry price may be sold.
+        I just hold these and don't trade them. The only rule: if a stock
+        drops 15% or more below what I paid for it, I'm allowed to sell it.
       </p>
 
       <h2>Portfolio B</h2>
       <p>
-        Follows a mechanical rule: buy when a position's price is below its
-        5-day average, sell when it rises 3% above or falls 3% below entry
-        price.
+        This one follows a simple rule I made up: buy more of a stock if
+        it's priced below its own 5-day average, and sell it once it goes
+        up 3% or down 3% from what I paid.
       </p>
 
       <p>
-        Performance is tracked weekly and compared against each other and a
-        benchmark (SPY, S&amp;P 500).
+        I'm checking on both portfolios every week and comparing them to
+        each other and to the S&amp;P 500 (SPY) as a benchmark.
       </p>
 
       <p>
-        The Results page also shows historical price context using real
-        market data from mid-July 2026 onward for each of the 7 assets, but
-        the actual portfolio experiment and trading rules only began on
-        August 24, 2026.
+        I also added a chart of real price history from mid-July 2026
+        onward for all 7 stocks, just for context — the actual experiment
+        with my trading rules didn't start until August 24, 2026.
       </p>
 
       <p>
-        The Results page's backtested comparison applies both portfolios'
-        rules retroactively to that same mid-July real price data, assuming
-        each portfolio starts with 10 shares of every asset, that a sold
-        position stays sold rather than being bought back later, that
-        Portfolio B's buy-more signal adds one share at a time paid for only
-        out of cash Portfolio B has freed up by selling elsewhere, and that a
-        5-day average needs 5 prior trading days before it can trigger a buy.
+        I also built a "backtest" that runs both portfolios' rules on that
+        same real price data starting mid-July, just to see what
+        would've happened. For the backtest, I had to make a few
+        decisions since my rules didn't cover everything:
       </p>
+      <ul>
+        <li>Each portfolio starts with 10 shares of each stock (same as my real trades)</li>
+        <li>Once I sell something, I don't buy it back later</li>
+        <li>Portfolio B only buys more shares using cash freed up from its own sells — not new money</li>
+        <li>I need 5 days of price history before the 5-day-average rule can even apply</li>
+      </ul>
     </section>
   );
 }
