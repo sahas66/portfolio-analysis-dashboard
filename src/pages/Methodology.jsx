@@ -34,6 +34,13 @@ export default function Methodology() {
         Performance is tracked weekly and compared against each other and a
         benchmark (SPY, S&amp;P 500).
       </p>
+
+      <p>
+        The Results page also shows historical price context using real
+        market data from mid-July 2026 onward for each of the 7 assets, but
+        the actual portfolio experiment and trading rules only began on
+        August 24, 2026.
+      </p>
     </section>
   );
 }

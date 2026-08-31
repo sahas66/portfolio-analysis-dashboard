@@ -1,6 +1,7 @@
 import { results } from '../data/results.js';
 import ResultsTable from '../components/ResultsTable.jsx';
 import ResultsChart from '../components/ResultsChart.jsx';
+import HistoricalPriceChart from '../components/HistoricalPriceChart.jsx';
 
 export default function Results() {
   return (
@@ -12,6 +13,9 @@ export default function Results() {
       </p>
       <ResultsChart rows={results} />
       <ResultsTable rows={results} />
+
+      <h2>Historical Price Context</h2>
+      <HistoricalPriceChart />
     </section>
   );
 }

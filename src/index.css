@@ -60,3 +60,26 @@ svg {
   height: auto;
   margin-top: 1rem;
 }
+
+.ticker-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.ticker-toggle button {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #8884;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+
+.ticker-toggle button.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
