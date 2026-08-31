@@ -13,8 +13,8 @@ export default function Methodology() {
 
       <p>
         I started both portfolios with $100,000 on August 24, 2026. I
-        split $25,000 evenly across 7 stocks and ETFs — VOO, BND, AAPL,
-        JNJ, PG, XOM, and COIN — so about $3,571 went into each one. I
+        split $25,000 evenly across 7 stocks and ETFs: VOO, BND, AAPL,
+        JNJ, PG, XOM, and COIN. About $3,571 went into each one. I
         kept the other $75,000 as cash.
       </p>
 
@@ -38,7 +38,7 @@ export default function Methodology() {
 
       <p>
         I also added a chart of real price history from mid-July 2026
-        onward for all 7 stocks, just for context — the actual experiment
+        onward for all 7 stocks, just for context. The actual experiment
         with my trading rules didn't start until August 24, 2026.
       </p>
 
@@ -51,7 +51,7 @@ export default function Methodology() {
       <ul>
         <li>Each portfolio starts with 10 shares of each stock (same as my real trades)</li>
         <li>Once I sell something, I don't buy it back later</li>
-        <li>Portfolio B (Short-Term) only buys more shares using cash freed up from its own sells — not new money</li>
+        <li>Portfolio B (Short-Term) only buys more shares using cash freed up from its own sells, not new money</li>
         <li>I need 5 days of price history before the 5-day-average rule can even apply</li>
       </ul>
     </section>

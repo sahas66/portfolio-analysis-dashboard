@@ -80,7 +80,7 @@ export default function HistoricalPriceChart() {
       <p className="chart-caption">
         This is real price data from mid-July 2026 up to now, just so you can see what
         the market was doing before I actually started trading. I didn't fund Portfolio A
-        (Long-Term) and Portfolio B (Short-Term) until August 24, 2026 — everything before
+        (Long-Term) and Portfolio B (Short-Term) until August 24, 2026. Everything before
         that is just background, not part of the actual experiment.
       </p>
 

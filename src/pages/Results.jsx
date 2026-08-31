@@ -9,7 +9,7 @@ export default function Results() {
     <section>
       <h1>Results</h1>
       <p className="placeholder">
-        I add this data by hand from Investopedia, so it's not here yet —
+        I add this data by hand from Investopedia, so it's not here yet.
         I'll edit <code>src/data/results.js</code> once I actually have
         results to add.
       </p>
