@@ -10,7 +10,7 @@ function buildPath(rows, key, xScale, yScale) {
 
 export default function ResultsChart({ rows }) {
   if (!rows.length) {
-    return <p className="placeholder">No results yet. I'll add rows to src/data/results.js once I have some.</p>;
+    return null;
   }
 
   const values = rows.flatMap((row) => [row.portfolioA, row.portfolioB]);

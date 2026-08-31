@@ -8,15 +8,12 @@ export default function Results() {
   return (
     <section>
       <h1>Results</h1>
-      <p className="placeholder">
-        I add this data by hand from Investopedia, so it's not here yet.
-        I'll edit <code>src/data/results.js</code> once I actually have
-        results to add.
-      </p>
-      <div className="card">
-        <ResultsChart rows={results} />
-        <ResultsTable rows={results} />
-      </div>
+      {results.length > 0 && (
+        <div className="card">
+          <ResultsChart rows={results} />
+          <ResultsTable rows={results} />
+        </div>
+      )}
 
       <h2>Backtest: what my rules would've done</h2>
       <BacktestChart />
