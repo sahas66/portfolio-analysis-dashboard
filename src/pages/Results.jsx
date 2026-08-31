@@ -15,7 +15,7 @@ export default function Results() {
         </div>
       )}
 
-      <h2>Backtest: what my rules would've done</h2>
+      <h2>Results: What happened</h2>
       <BacktestChart />
 
       <h2>Real price history (for context)</h2>
