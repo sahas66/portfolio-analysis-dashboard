@@ -53,9 +53,9 @@ export default function Methodology() {
         cover everything:
       </p>
       <ul>
-        <li>Each portfolio starts with 10 shares of each stock (same as my real trades)</li>
+        <li>Each portfolio starts with the real $25,000, split evenly across the 7 stocks and rounded down to whole shares, with the leftover kept as cash</li>
         <li>Once I sell something, I don't buy it back later</li>
-        <li>Portfolio B (Short-Term) only buys more shares using cash freed up from its own sells, not new money</li>
+        <li>Portfolio B (Short-Term) only buys more shares using cash freed up from rounding down or its own sells, not new money</li>
         <li>I need 5 days of price history before the 5-day-average rule can even apply</li>
       </ul>
     </section>

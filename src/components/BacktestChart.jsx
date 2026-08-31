@@ -1,4 +1,5 @@
-import { computeBacktest } from '../utils/backtest.js';
+import { computeBacktest, BACKTEST_TICKERS } from '../utils/backtest.js';
+import { historicalPrices } from '../data/historicalPrices.js';
 
 const WIDTH = 720;
 const HEIGHT = 320;
@@ -9,6 +10,7 @@ const PAD_BOTTOM = 36;
 const GRID_LINES = 5;
 
 const currency = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+const currencyPrecise = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
 const formatDate = (iso) => {
   const [, month, day] = iso.split('-');
@@ -17,7 +19,7 @@ const formatDate = (iso) => {
 };
 
 export default function BacktestChart() {
-  const { dates, portfolioA, portfolioB } = computeBacktest();
+  const { dates, portfolioA, portfolioB, allocation } = computeBacktest();
   const n = dates.length;
 
   const allValues = [...portfolioA, ...portfolioB];
@@ -45,10 +47,9 @@ export default function BacktestChart() {
         Portfolio B (Short-Term) rules starting July 14, 2026, the day I actually funded
         both portfolios, using real prices. It's still a backtest, not my actual
         tracked results, since it simulates the rules automatically every single day,
-        while I actually check and trade by hand once a week. Also, this only tracks the
-        ~$17,852 that went into 10 shares of each stock, not the full $25,000 I actually
-        invested. 10 shares doesn't split evenly to $3,571 per stock the way my real
-        trades did.
+        while I actually check and trade by hand once a week. Each portfolio starts with
+        the real $25,000, split evenly across the 7 stocks and rounded down to whole
+        shares, with the leftover kept as cash, same as the table below.
       </p>
 
       <svg
@@ -98,8 +99,40 @@ export default function BacktestChart() {
         </g>
       </svg>
       <p className="chart-axis-label">
-        Both start at {currency(portfolioA[0])}: 10 shares each of VOO, BND, AAPL, JNJ, PG, XOM, COIN.
+        Both start at {currency(portfolioA[0])}: whole shares of each stock at July 14
+        prices, plus {currencyPrecise(allocation.cash)} in leftover cash from rounding down.
       </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Price (Jul 14)</th>
+            <th>Shares</th>
+            <th>Spent</th>
+          </tr>
+        </thead>
+        <tbody>
+          {BACKTEST_TICKERS.map((t) => {
+            const price = historicalPrices[t][0][1];
+            const shares = allocation.shares[t];
+            return (
+              <tr key={t}>
+                <td>{t}</td>
+                <td>{currencyPrecise(price)}</td>
+                <td>{shares}</td>
+                <td>{currencyPrecise(shares * price)}</td>
+              </tr>
+            );
+          })}
+          <tr>
+            <td>Cash left over</td>
+            <td></td>
+            <td></td>
+            <td>{currencyPrecise(allocation.cash)}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }

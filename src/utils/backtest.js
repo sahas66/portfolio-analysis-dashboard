@@ -2,22 +2,27 @@ import { historicalPrices } from '../data/historicalPrices.js';
 
 // Backtest assumptions (documented since the trading rules don't fully
 // specify position sizing):
-// - Each ticker starts with 10 shares, matching the actual Day 1 position.
+// - Each portfolio starts with the real $25,000 invested amount, split
+//   evenly across the 7 tickers (~$3,571.43 each) at each ticker's close
+//   on 2026-07-14, converted to whole shares (rounded down). The leftover
+//   from rounding down is pooled as starting cash, same as a real broker
+//   wouldn't buy a fractional share.
 // - "Entry price" for both the -15%/±3% rules and Portfolio B's buy-more
 //   rule is each ticker's close on the first date in historicalPrices
 //   (2026-07-14), since the backtest simulates the rules from that date.
 // - A sold position stays sold (converted to cash) for the rest of the
 //   backtest — neither rule describes re-entering a position.
 // - Portfolio B's "buy more" rule adds 1 share per triggering day, funded
-//   from a shared cash pool seeded by proceeds of any position it has
-//   already sold. If that pool can't cover the share price, the buy is
-//   skipped for that day (no assumed outside financing).
+//   from a shared cash pool seeded by the rounding-down leftover and
+//   proceeds of any position it has already sold. If that pool can't
+//   cover the share price, the buy is skipped for that day (no assumed
+//   outside financing).
 // - The trailing 5-day average uses the 5 trading days strictly before the
 //   current day (not including it), and buys aren't evaluated until at
 //   least 5 days of price history exist.
 
 const TICKERS = Object.keys(historicalPrices);
-const STARTING_SHARES = 10;
+const TOTAL_INVESTMENT = 25000;
 const A_STOP_LOSS = 0.85; // sell if price falls to 85% of entry or below
 const B_TAKE_PROFIT = 1.03; // sell if price rises to 103% of entry or above
 const B_STOP_LOSS = 0.97; // sell if price falls to 97% of entry or below
@@ -31,11 +36,25 @@ function trailingAverage(ticker, i) {
   return sum / TRAILING_WINDOW;
 }
 
-function simulatePortfolioA(dates) {
-  const positions = Object.fromEntries(
-    TICKERS.map((t) => [t, { shares: STARTING_SHARES, entry: priceAt(t, 0), sold: false }])
-  );
+function startingAllocation() {
+  const perTicker = TOTAL_INVESTMENT / TICKERS.length;
   let cash = 0;
+  const shares = {};
+  for (const t of TICKERS) {
+    const price = priceAt(t, 0);
+    const s = Math.floor(perTicker / price);
+    shares[t] = s;
+    cash += perTicker - s * price;
+  }
+  return { shares, cash };
+}
+
+function simulatePortfolioA(dates) {
+  const { shares: startShares, cash: startCash } = startingAllocation();
+  const positions = Object.fromEntries(
+    TICKERS.map((t) => [t, { shares: startShares[t], entry: priceAt(t, 0), sold: false }])
+  );
+  let cash = startCash;
   const values = [];
 
   dates.forEach((date, i) => {
@@ -57,10 +76,11 @@ function simulatePortfolioA(dates) {
 }
 
 function simulatePortfolioB(dates) {
+  const { shares: startShares, cash: startCash } = startingAllocation();
   const positions = Object.fromEntries(
-    TICKERS.map((t) => [t, { shares: STARTING_SHARES, entry: priceAt(t, 0), sold: false }])
+    TICKERS.map((t) => [t, { shares: startShares[t], entry: priceAt(t, 0), sold: false }])
   );
-  let cash = 0;
+  let cash = startCash;
   const values = [];
 
   dates.forEach((date, i) => {
@@ -95,8 +115,9 @@ export function computeBacktest() {
   const dates = historicalPrices[TICKERS[0]].map((row) => row[0]);
   const portfolioA = simulatePortfolioA(dates);
   const portfolioB = simulatePortfolioB(dates);
-  return { dates, portfolioA, portfolioB };
+  const allocation = startingAllocation();
+  return { dates, portfolioA, portfolioB, allocation };
 }
 
-export const BACKTEST_STARTING_SHARES = STARTING_SHARES;
 export const BACKTEST_TICKERS = TICKERS;
+export const BACKTEST_TOTAL_INVESTMENT = TOTAL_INVESTMENT;
