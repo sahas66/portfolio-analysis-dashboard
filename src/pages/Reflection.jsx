@@ -48,6 +48,29 @@ export default function Reflection() {
         (Short-Term) actually showed, what surprised me, and what I'd
         change if I did this again.
       </p>
+
+      <h2>Development Timeline</h2>
+      <p>
+        A few milestones from my commit history. Full history is on{' '}
+        <a
+          href="https://github.com/sahas66/portfolio-analysis-dashboard/commits/main"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        .
+      </p>
+      <ul>
+        <li>Aug 24, 2026: Initial commit</li>
+        <li>Aug 24, 2026: Converted the site to a static React app instead of using a backend</li>
+        <li>Aug 24, 2026: Filled in the Methodology and Home content for the Investopedia simulation</li>
+        <li>Aug 30, 2026: Added a historical price chart using real market data</li>
+        <li>Aug 30, 2026: Added a backtested strategy comparison chart using real historical prices</li>
+        <li>Aug 30, 2026: Corrected the real experiment start date to July 14, 2026</li>
+        <li>Aug 30, 2026: Reran the backtest using the real $25,000 allocation instead of a flat share count</li>
+        <li>Aug 31, 2026: Added my reflection on what I learned from this project</li>
+      </ul>
     </section>
   );
 }
