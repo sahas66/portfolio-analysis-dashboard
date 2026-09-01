@@ -4,10 +4,13 @@ export default function Reflection() {
       <h1>Reflection</h1>
       <p>
         I was on vacation for May and June, including an unplanned trip
-        for most of June where I had no way to work on this project at
-        all. That's honestly why my real portfolio experiment starts July
-        14, 2026 instead of earlier, since that's when I actually got back
-        and had time to research, code, and pull market data.
+        for most of June, which wasn't ideal for creating and monitoring
+        stock portfolios. In order to utilize my time, I extended my
+        knowledge on coding languages and researched stock data to help
+        me build a strong foundation for creating my product. That's
+        honestly why my real portfolio experiment starts July 14, 2026
+        instead of earlier, since that's when I actually got back and
+        could start creating and monitoring the actual portfolios.
       </p>
       <p>
         This project taught me a lot more than I expected going in. On the
