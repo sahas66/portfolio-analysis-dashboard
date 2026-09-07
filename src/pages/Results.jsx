@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { results } from '../data/results.js';
 import ResultsTable from '../components/ResultsTable.jsx';
 import ResultsChart from '../components/ResultsChart.jsx';
@@ -14,6 +14,15 @@ const screenshots = [
 
 export default function Results() {
   const [zoomedShot, setZoomedShot] = useState(null);
+
+  useEffect(() => {
+    if (!zoomedShot) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setZoomedShot(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [zoomedShot]);
 
   return (
     <section>
