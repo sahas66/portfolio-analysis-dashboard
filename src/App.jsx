@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Home from './pages/Home.jsx';
 import Methodology from './pages/Methodology.jsx';
 import Results from './pages/Results.jsx';
@@ -11,9 +11,20 @@ const PAGES = {
   Reflection,
 };
 
+function pageFromHash() {
+  const name = window.location.hash.replace('#', '');
+  return PAGES[name] ? name : 'Home';
+}
+
 export default function App() {
-  const [page, setPage] = useState('Home');
+  const [page, setPage] = useState(pageFromHash);
   const Page = PAGES[page];
+
+  useEffect(() => {
+    const onHashChange = () => setPage(pageFromHash());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   return (
     <>
@@ -22,7 +33,10 @@ export default function App() {
           <button
             key={name}
             className={name === page ? 'active' : ''}
-            onClick={() => setPage(name)}
+            onClick={() => {
+              window.location.hash = name;
+              setPage(name);
+            }}
           >
             {name}
           </button>
