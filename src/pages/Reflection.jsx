@@ -50,18 +50,10 @@ export default function Reflection() {
       </p>
 
       <h2>Development Timeline</h2>
-      <p>
-        A few milestones from my commit history. Full history is on{' '}
-        <a
-          href="https://github.com/sahas66/portfolio-analysis-dashboard/commits/main"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-        .
-      </p>
+      <p>A few milestones from my commit history.</p>
       <ul>
+        <li>Jun-Jul, 2026: Researched Python and JavaScript, and brainstormed ideas</li>
+        <li>Jul 14, 2026: Started portfolio experiment</li>
         <li>Aug 24, 2026: Initial commit</li>
         <li>Aug 24, 2026: Converted the site to a static React app instead of using a backend</li>
         <li>Aug 24, 2026: Filled in the Methodology and Home content for the Investopedia simulation</li>
