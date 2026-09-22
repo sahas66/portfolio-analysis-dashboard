@@ -41,8 +41,8 @@ export default function BacktestChart() {
   const finalB = portfolioB[portfolioB.length - 1];
 
   return (
-    <div className="card">
-      <p className="chart-caption">
+    <div className="card space-y-4">
+      <p className="text-sm leading-relaxed text-slate-400">
         This chart shows what happened when I applied my Portfolio A (Long-Term) and
         Portfolio B (Short-Term) rules starting July 14, 2026, the day I actually funded
         both portfolios, using real prices. It's still a backtest, not my actual
@@ -53,6 +53,7 @@ export default function BacktestChart() {
       </p>
 
       <svg
+        className="h-auto w-full text-slate-300"
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
         aria-label={`Backtested Portfolio A (Long-Term) and Portfolio B (Short-Term) value, mid-July 2026 to present. Final Portfolio A (Long-Term): ${currency(finalA)}. Final Portfolio B (Short-Term): ${currency(finalB)}.`}
@@ -98,12 +99,12 @@ export default function BacktestChart() {
           </text>
         </g>
       </svg>
-      <p className="chart-axis-label">
+      <p className="text-xs text-slate-500">
         Both start at {currency(portfolioA[0])}: whole shares of each stock at July 14
         prices, plus {currencyPrecise(allocation.cash)} in leftover cash from rounding down.
       </p>
 
-      <table>
+      <table className="data-table">
         <thead>
           <tr>
             <th>Ticker</th>

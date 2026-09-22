@@ -2,11 +2,18 @@ import Editable from '../components/Editable.jsx';
 
 export default function Home() {
   return (
-    <section>
-      <Editable page="Home" id="title" as="h1" text="Portfolio Analysis Dashboard" />
+    <section className="space-y-5">
+      <Editable
+        page="Home"
+        id="title"
+        as="h1"
+        className="text-2xl font-semibold tracking-tight text-white sm:text-3xl"
+        text="Portfolio Analysis Dashboard"
+      />
       <Editable
         page="Home"
         id="intro"
+        className="leading-relaxed text-slate-300"
         text={
           "Description of IB Personal Project: My aim was to discover if " +
           "actively trading stocks based on a set rule (Portfolio B, Short-Term) " +
@@ -20,6 +27,7 @@ export default function Home() {
       <Editable
         page="Home"
         id="allocation"
+        className="leading-relaxed text-slate-300"
         text={
           "Both portfolios started with $100,000 on July 14, 2026. I " +
           "invested $25,000 evenly across the same 7 stocks and ETFs in each " +
@@ -32,6 +40,7 @@ export default function Home() {
       <Editable
         page="Home"
         id="outro"
+        className="leading-relaxed text-slate-300"
         text={
           "This site walks through my methodology, tracks results as they " +
           "come in, and reflects on what the comparison actually shows."

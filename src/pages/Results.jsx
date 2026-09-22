@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { results } from '../data/results.js';
 import ResultsTable from '../components/ResultsTable.jsx';
 import ResultsChart from '../components/ResultsChart.jsx';
@@ -26,53 +27,98 @@ export default function Results() {
   }, [zoomedShot]);
 
   return (
-    <section>
-      <Editable page="Results" id="title" as="h1" text="Results" />
+    <section className="space-y-8">
+      <Editable
+        page="Results"
+        id="title"
+        as="h1"
+        className="text-2xl font-semibold tracking-tight text-white sm:text-3xl"
+        text="Results"
+      />
       {results.length > 0 && (
-        <div className="card">
+        <div className="card space-y-4">
           <ResultsChart rows={results} />
           <ResultsTable rows={results} />
         </div>
       )}
 
-      <Editable page="Results" id="whatHappenedHeading" as="h2" text="Results: What happened" />
-      <BacktestChart />
-
-      <Editable page="Results" id="priceHistoryHeading" as="h2" text="Real price history (for context)" />
-      <HistoricalPriceChart />
-
-      <Editable page="Results" id="screenshotsHeading" as="h2" text="Investopedia Simulator Portfolio" />
-      <div className="screenshot-row">
-        {screenshots.map((shot) => (
-          <figure className="screenshot-figure" key={shot.caption}>
-            <img
-              src={shot.src}
-              alt={shot.alt}
-              className="screenshot-thumb"
-              onClick={() => setZoomedShot(shot)}
-            />
-            <figcaption>{shot.caption}</figcaption>
-          </figure>
-        ))}
+      <div className="space-y-3">
+        <Editable
+          page="Results"
+          id="whatHappenedHeading"
+          as="h2"
+          className="text-lg font-semibold text-white"
+          text="Results: What happened"
+        />
+        <BacktestChart />
       </div>
 
-      {zoomedShot && (
-        <div className="lightbox-overlay" onClick={() => setZoomedShot(null)}>
-          <button
-            className="lightbox-close"
-            aria-label="Close"
-            onClick={() => setZoomedShot(null)}
-          >
-            ×
-          </button>
-          <img
-            src={zoomedShot.src}
-            alt={zoomedShot.alt}
-            className="lightbox-image"
-            onClick={(e) => e.stopPropagation()}
-          />
+      <div className="space-y-3">
+        <Editable
+          page="Results"
+          id="priceHistoryHeading"
+          as="h2"
+          className="text-lg font-semibold text-white"
+          text="Real price history (for context)"
+        />
+        <HistoricalPriceChart />
+      </div>
+
+      <div className="space-y-3">
+        <Editable
+          page="Results"
+          id="screenshotsHeading"
+          as="h2"
+          className="text-lg font-semibold text-white"
+          text="Investopedia Simulator Portfolio"
+        />
+        <div className="flex flex-wrap gap-4">
+          {screenshots.map((shot) => (
+            <figure className="m-0 min-w-[280px] flex-1" key={shot.caption}>
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                className="w-full cursor-zoom-in rounded-lg border border-slate-800 transition-transform hover:scale-[1.01]"
+                onClick={() => setZoomedShot(shot)}
+              />
+              <figcaption className="mt-2 text-center text-sm text-slate-400">
+                {shot.caption}
+              </figcaption>
+            </figure>
+          ))}
         </div>
-      )}
+      </div>
+
+      <AnimatePresence>
+        {zoomedShot && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-8"
+            onClick={() => setZoomedShot(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            <button
+              className="fixed right-6 top-4 text-4xl leading-none text-white"
+              aria-label="Close"
+              onClick={() => setZoomedShot(null)}
+            >
+              ×
+            </button>
+            <motion.img
+              src={zoomedShot.src}
+              alt={zoomedShot.alt}
+              className="max-h-[90vh] max-w-[90vw] shadow-2xl shadow-black/50"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.97 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.97 }}
+              transition={{ duration: 0.15 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -5,7 +5,7 @@ export default function ResultsTable({ rows }) {
   if (!rows.length) return null;
 
   return (
-    <table>
+    <table className="data-table">
       <thead>
         <tr>
           <th>Date</th>

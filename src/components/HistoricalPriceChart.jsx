@@ -73,31 +73,36 @@ export default function HistoricalPriceChart() {
   };
 
   return (
-    <div className="card">
-      <p className="chart-caption">
+    <div className="card space-y-4">
+      <p className="text-sm leading-relaxed text-slate-400">
         This is real price data starting July 14, 2026, which is when I actually funded
         Portfolio A (Long-Term) and Portfolio B (Short-Term) and started applying my
         trading rules. It's just the real market prices for context, separate from my
         actual tracked results, which I add by hand from Investopedia on the Results page.
       </p>
 
-      <div className="ticker-toggle" role="group" aria-label="Show or hide tickers">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Show or hide tickers">
         {TICKERS.map((t) => (
           <button
             key={t}
             type="button"
             aria-pressed={visible.has(t)}
-            className={visible.has(t) ? 'active' : ''}
+            className={
+              visible.has(t)
+                ? 'flex items-center gap-1.5 rounded-md border border-slate-700 px-2.5 py-1 text-xs font-medium text-slate-100 opacity-100 transition-opacity'
+                : 'flex items-center gap-1.5 rounded-md border border-slate-700 px-2.5 py-1 text-xs font-medium text-slate-100 opacity-50 transition-opacity hover:opacity-80'
+            }
             style={{ '--swatch': COLORS[t] }}
             onClick={() => toggle(t)}
           >
-            <span className="swatch" />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: 'var(--swatch, #8888)' }} />
             {t}
           </button>
         ))}
       </div>
 
       <svg
+        className="h-auto w-full text-slate-300"
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
         aria-label="Cumulative percent price change for all seven tickers, mid-July 2026 to present"
@@ -142,7 +147,7 @@ export default function HistoricalPriceChart() {
             />
           ))}
       </svg>
-      <p className="chart-axis-label">Y-axis is % change in price since Jul 14, 2026, not the actual dollar price.</p>
+      <p className="text-xs text-slate-500">Y-axis is % change in price since Jul 14, 2026, not the actual dollar price.</p>
     </div>
   );
 }
