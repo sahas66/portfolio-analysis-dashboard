@@ -199,3 +199,62 @@ svg text {
   border-radius: 50%;
   background: var(--swatch, #8888);
 }
+
+.edit-mode-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.edit-mode-toggle {
+  font: inherit;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #8884;
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+
+.edit-mode-toggle.active {
+  background: #d97706;
+  color: #fff;
+  border-color: #d97706;
+}
+
+.edit-mode-copy {
+  font: inherit;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #16a34a;
+  border-radius: 6px;
+  background: none;
+  color: #16a34a;
+  cursor: pointer;
+}
+
+.edit-mode-copy:hover {
+  background: #16a34a22;
+}
+
+main.edit-mode-active::before {
+  content: 'Edit Mode is ON — changes here are local only and will NOT save automatically. Use "Copy edited content" and paste it to Claude to actually save and deploy.';
+  display: block;
+  background: #d9770622;
+  border: 1px solid #d97706;
+  color: #d97706;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.editable-field {
+  outline: 2px dashed #d97706;
+  outline-offset: 2px;
+  border-radius: 4px;
+  cursor: text;
+}
+
+.editable-field:focus {
+  outline-color: #16a34a;
+  background: #16a34a11;
+}

@@ -4,6 +4,7 @@ import ResultsTable from '../components/ResultsTable.jsx';
 import ResultsChart from '../components/ResultsChart.jsx';
 import HistoricalPriceChart from '../components/HistoricalPriceChart.jsx';
 import BacktestChart from '../components/BacktestChart.jsx';
+import Editable from '../components/Editable.jsx';
 import portfolioAScreenshot from '../assets/investopedia-portfolio-a.png';
 import portfolioBScreenshot from '../assets/investopedia-portfolio-b.png';
 
@@ -26,7 +27,7 @@ export default function Results() {
 
   return (
     <section>
-      <h1>Results</h1>
+      <Editable page="Results" id="title" as="h1" text="Results" />
       {results.length > 0 && (
         <div className="card">
           <ResultsChart rows={results} />
@@ -34,13 +35,13 @@ export default function Results() {
         </div>
       )}
 
-      <h2>Results: What happened</h2>
+      <Editable page="Results" id="whatHappenedHeading" as="h2" text="Results: What happened" />
       <BacktestChart />
 
-      <h2>Real price history (for context)</h2>
+      <Editable page="Results" id="priceHistoryHeading" as="h2" text="Real price history (for context)" />
       <HistoricalPriceChart />
 
-      <h2>Investopedia Simulator Portfolio</h2>
+      <Editable page="Results" id="screenshotsHeading" as="h2" text="Investopedia Simulator Portfolio" />
       <div className="screenshot-row">
         {screenshots.map((shot) => (
           <figure className="screenshot-figure" key={shot.caption}>

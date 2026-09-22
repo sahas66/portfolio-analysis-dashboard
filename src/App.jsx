@@ -3,6 +3,7 @@ import Home from './pages/Home.jsx';
 import Methodology from './pages/Methodology.jsx';
 import Results from './pages/Results.jsx';
 import Reflection from './pages/Reflection.jsx';
+import { EditModeProvider, useEditMode } from './context/EditModeContext.jsx';
 
 const PAGES = {
   Home,
@@ -16,9 +17,42 @@ function pageFromHash() {
   return PAGES[name] ? name : 'Home';
 }
 
-export default function App() {
+function EditModeToolbar() {
+  const { editMode, toggleEditMode, getEditsAsText } = useEditMode();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    const text = getEditsAsText();
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      window.prompt('Copy this text:', text);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div className="edit-mode-toolbar">
+      <button
+        className={editMode ? 'edit-mode-toggle active' : 'edit-mode-toggle'}
+        onClick={toggleEditMode}
+      >
+        {editMode ? 'Edit Mode: ON' : 'Edit Mode: OFF'}
+      </button>
+      {editMode && (
+        <button className="edit-mode-copy" onClick={handleCopy}>
+          {copied ? 'Copied!' : 'Copy edited content'}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function AppContent() {
   const [page, setPage] = useState(pageFromHash);
   const Page = PAGES[page];
+  const { editMode } = useEditMode();
 
   useEffect(() => {
     const onHashChange = () => setPage(pageFromHash());
@@ -41,10 +75,19 @@ export default function App() {
             {name}
           </button>
         ))}
+        <EditModeToolbar />
       </nav>
-      <main>
+      <main className={editMode ? 'edit-mode-active' : ''}>
         <Page />
       </main>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <EditModeProvider>
+      <AppContent />
+    </EditModeProvider>
   );
 }
