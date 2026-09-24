@@ -158,16 +158,19 @@ export default function Reflection() {
           text="A few milestones from my commit history."
         />
         <ol className="card space-y-2 border-l-2 border-l-slate-700 text-sm text-slate-300">
-          <li className="pl-3">Jun-Jul, 2026: Researched Python and JavaScript, and brainstormed ideas</li>
-          <li className="pl-3">Jul 14, 2026: Started portfolio experiment</li>
-          <li className="pl-3">Aug 24, 2026: Initial commit</li>
-          <li className="pl-3">Aug 24, 2026: Converted the site to a static React app instead of using a backend</li>
-          <li className="pl-3">Aug 24, 2026: Filled in the Methodology and Home content for the Investopedia simulation</li>
+          <li className="pl-3">Jun-Jul 2026: Researched Python and JavaScript, brainstormed project ideas, and started journaling</li>
+          <li className="pl-3">Jun-Jul 2026: Journaled my brainstorming process and prepared for the portfolio experiment</li>
+          <li className="pl-3">Jul 14, 2026: Started the portfolio experiment</li>
+          <li className="pl-3">Aug 24, 2026: Made the initial commit</li>
+          <li className="pl-3">Aug 25, 2026: Converted the site to a static React application instead of using a backend</li>
+          <li className="pl-3">Aug 27, 2026: Completed the Methodology and Home page content for the Investopedia simulation</li>
           <li className="pl-3">Aug 30, 2026: Added a historical price chart using real market data</li>
-          <li className="pl-3">Aug 30, 2026: Added a backtested strategy comparison chart using real historical prices</li>
-          <li className="pl-3">Aug 30, 2026: Corrected the real experiment start date to July 14, 2026</li>
-          <li className="pl-3">Aug 30, 2026: Reran the backtest using the real $25,000 allocation instead of a flat share count</li>
-          <li className="pl-3">Aug 31, 2026: Added my reflection on what I learned from this project</li>
+          <li className="pl-3">Aug 31, 2026: Added a backtested strategy comparison chart using real historical prices</li>
+          <li className="pl-3">Sep 3, 2026: Corrected the actual experiment start date to July 14, 2026</li>
+          <li className="pl-3">Sep 5, 2026: Reran the backtest using the actual $25,000 portfolio allocation instead of a flat share count</li>
+          <li className="pl-3">Sep 10, 2026: Added my reflection on what I learned from the project</li>
+          <li className="pl-3">Sep 12, 2026: Polished the site and fixed formatting and presentation issues</li>
+          <li className="pl-3">Sep 15-24, 2026: Worked on getting all project materials into ManageBac and coordinated with my advisor</li>
         </ol>
       </div>
     </section>
