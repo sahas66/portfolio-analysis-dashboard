@@ -40,9 +40,7 @@ export default function Reflection() {
             "and figuring out why builds were silently failing. I learned what " +
             "it actually takes to design a fair experiment too: locking in " +
             "trading rules before I see any results, keeping both portfolios " +
-            "identical at the start so only the strategy differs, and being " +
-            "honest about what's a real tracked result versus a backtest " +
-            "estimate."
+            "identical at the start so only the strategy differs."
           }
         />
         <Editable
@@ -165,9 +163,7 @@ export default function Reflection() {
           <li className="pl-3">Aug 25, 2026: Converted the site to a static React application instead of using a backend</li>
           <li className="pl-3">Aug 27, 2026: Completed the Methodology and Home page content for the Investopedia simulation</li>
           <li className="pl-3">Aug 30, 2026: Added a historical price chart using real market data</li>
-          <li className="pl-3">Aug 31, 2026: Added a backtested strategy comparison chart using real historical prices</li>
           <li className="pl-3">Sep 3, 2026: Corrected the actual experiment start date to July 14, 2026</li>
-          <li className="pl-3">Sep 5, 2026: Reran the backtest using the actual $25,000 portfolio allocation instead of a flat share count</li>
           <li className="pl-3">Sep 10, 2026: Added my reflection on what I learned from the project</li>
           <li className="pl-3">Sep 12, 2026: Polished the site and fixed formatting and presentation issues</li>
           <li className="pl-3">Sep 15-24, 2026: Worked on getting all project materials into ManageBac and coordinated with my advisor</li>
