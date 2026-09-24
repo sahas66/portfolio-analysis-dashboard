@@ -9,6 +9,16 @@ const PAD_TOP = 48;
 const PAD_BOTTOM = 36;
 const GRID_LINES = 5;
 
+// Dip/recovery callouts, derived from the actual per-ticker price moves in
+// historicalPrices.js (see the day each portfolio's biggest single-day
+// swings happened, and which ticker(s) accounted for them).
+const ANNOTATIONS = [
+  { portfolio: 'A', date: '2026-08-03', label: 'COIN & AAPL dropped', dx: -20, dy: -34, anchor: 'end' },
+  { portfolio: 'A', date: '2026-08-21', label: 'COIN rebounded sharply', dx: -14, dy: 40, anchor: 'end' },
+  { portfolio: 'B', date: '2026-07-29', label: 'VOO dipped', dx: -70, dy: -20, anchor: 'end' },
+  { portfolio: 'B', date: '2026-08-04', label: 'VOO rebounded', dx: 40, dy: -20, anchor: 'start' },
+];
+
 const currency = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 const currencyPrecise = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
@@ -40,6 +50,14 @@ export default function BacktestChart() {
   const finalA = portfolioA[portfolioA.length - 1];
   const finalB = portfolioB[portfolioB.length - 1];
 
+  const annotations = ANNOTATIONS.map((a) => {
+    const i = dates.indexOf(a.date);
+    const value = (a.portfolio === 'A' ? portfolioA : portfolioB)[i];
+    const x = xScale(i);
+    const y = yScale(value);
+    return { ...a, x, y, labelX: x + a.dx, labelY: y + a.dy };
+  });
+
   return (
     <div className="card space-y-4">
       <p className="text-sm leading-relaxed text-slate-400">
@@ -56,6 +74,12 @@ export default function BacktestChart() {
         role="img"
         aria-label={`Backtested Portfolio A (Long-Term) and Portfolio B (Short-Term) value, mid-July 2026 to present. Final Portfolio A (Long-Term): ${currency(finalA)}. Final Portfolio B (Short-Term): ${currency(finalB)}.`}
       >
+        <defs>
+          <marker id="annotationArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="currentColor" />
+          </marker>
+        </defs>
+
         {gridValues.map((v) => (
           <g key={v}>
             <line
@@ -96,6 +120,23 @@ export default function BacktestChart() {
             Portfolio B (Short-Term): {currency(finalB)}
           </text>
         </g>
+
+        {annotations.map((a) => (
+          <g key={`${a.portfolio}-${a.date}`} className="text-slate-400" opacity="0.9">
+            <line
+              x1={a.labelX}
+              y1={a.labelY}
+              x2={a.x}
+              y2={a.y}
+              stroke="currentColor"
+              strokeWidth="1"
+              markerEnd="url(#annotationArrow)"
+            />
+            <text x={a.labelX} y={a.labelY - 5} fontSize="10" fill="currentColor" textAnchor={a.anchor}>
+              {a.label}
+            </text>
+          </g>
+        ))}
       </svg>
       <p className="text-xs text-slate-500">
         Both start at {currency(portfolioA[0])}: whole shares of each stock at July 14
