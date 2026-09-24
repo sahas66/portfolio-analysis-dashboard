@@ -71,17 +71,76 @@ export default function Reflection() {
             "or the finance was."
           }
         />
-        <Editable
-          page="Reflection"
-          id="placeholder"
-          className="rounded-lg border border-dashed border-slate-700 bg-slate-900/40 p-4 italic leading-relaxed text-slate-400"
-          text={
-            "TODO: I still need to write this once I have real results. I want " +
-            "to talk about what Portfolio A (Long-Term) vs. Portfolio B " +
-            "(Short-Term) actually showed, what surprised me, and what I'd " +
-            "change if I did this again."
-          }
-        />
+        <div className="space-y-2">
+          <Editable
+            page="Reflection"
+            id="resultsHeading"
+            as="h3"
+            className="text-base font-semibold text-white"
+            text="What the results showed"
+          />
+          <Editable
+            page="Reflection"
+            id="resultsBody"
+            className="leading-relaxed text-slate-300"
+            text={
+              "By the end, Portfolio A (Long-Term) was worth $25,914.25, up " +
+              "about 3.7% from where it started. Portfolio B (Short-Term) " +
+              "ended up slightly ahead at $26,036.35, up about 4.2%. So the " +
+              "short-term strategy won, but only by a little over $100, which " +
+              "was pretty close to what I expected going in."
+            }
+          />
+        </div>
+        <div className="space-y-2">
+          <Editable
+            page="Reflection"
+            id="surprisedHeading"
+            as="h3"
+            className="text-base font-semibold text-white"
+            text="What surprised me"
+          />
+          <Editable
+            page="Reflection"
+            id="surprisedBody"
+            className="leading-relaxed text-slate-300"
+            text={
+              "Honestly, what surprised me most was just how well both " +
+              "strategies actually worked. I knew going in that professional, " +
+              "rule-based investment strategies were effective, but seeing " +
+              "almost $1,000 in gains on both sides made that a lot more real " +
+              "than just reading about it. I predicted short-term trading " +
+              "would win, but I thought the gap would be closer than it " +
+              "turned out to be. The gap ended up being about the size I " +
+              "expected, just with the two strategies switched from what I " +
+              "guessed."
+            }
+          />
+        </div>
+        <div className="space-y-2">
+          <Editable
+            page="Reflection"
+            id="changeHeading"
+            as="h3"
+            className="text-base font-semibold text-white"
+            text="What I'd change if I did this again"
+          />
+          <Editable
+            page="Reflection"
+            id="changeBody"
+            className="leading-relaxed text-slate-300"
+            text={
+              "If I could do this over, the biggest thing would honestly be " +
+              "having more time. Losing most of June and part of July to " +
+              "being busy really cut into how long I could actually run the " +
+              "experiment. If I had more time, I'd want to experiment with " +
+              "different rule thresholds instead of just sticking with my " +
+              "first set of numbers, check in on both portfolios more often, " +
+              "and maybe add a few more tickers to see if the results held up " +
+              "across a bigger mix of stocks."
+            }
+          />
+        </div>
       </div>
 
       <div className="space-y-3">
