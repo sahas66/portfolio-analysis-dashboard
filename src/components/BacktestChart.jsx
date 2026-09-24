@@ -12,12 +12,16 @@ const GRID_LINES = 5;
 // Dip/recovery callouts, derived from the actual per-ticker price moves in
 // historicalPrices.js (see the day each portfolio's biggest single-day
 // swings happened, and which ticker(s) accounted for them).
+// text: label position relative to the point; tail: where the arrow starts.
 const ANNOTATIONS = [
-  { portfolio: 'A', date: '2026-08-03', label: 'COIN & AAPL dropped', dx: -20, dy: -34, anchor: 'end' },
-  { portfolio: 'A', date: '2026-08-21', label: 'COIN rebounded sharply', dx: -14, dy: 40, anchor: 'end' },
-  { portfolio: 'B', date: '2026-07-29', label: 'VOO dipped', dx: -70, dy: -20, anchor: 'end' },
-  { portfolio: 'B', date: '2026-08-04', label: 'VOO rebounded', dx: 40, dy: -20, anchor: 'start' },
+  { portfolio: 'A', date: '2026-08-03', label: 'COIN & AAPL dropped', text: [32, -8], tail: [28, -12], anchor: 'start' },
+  { portfolio: 'A', date: '2026-08-21', label: 'COIN rebounded sharply', text: [-27, -22], tail: [-21, -26], anchor: 'end' },
+  { portfolio: 'B', date: '2026-07-29', label: 'VOO dipped', text: [-17, 59], tail: [-13, 54], anchor: 'end' },
+  { portfolio: 'B', date: '2026-08-04', label: 'VOO rebounded', text: [34, 37], tail: [29, 33], anchor: 'start' },
 ];
+
+const ANNOTATION_COLORS = { A: '#60a5fa', B: '#f87171' };
+const POINT_RADIUS = 4.5;
 
 const currency = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 const currencyPrecise = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -55,7 +59,22 @@ export default function BacktestChart() {
     const value = (a.portfolio === 'A' ? portfolioA : portfolioB)[i];
     const x = xScale(i);
     const y = yScale(value);
-    return { ...a, x, y, labelX: x + a.dx, labelY: y + a.dy };
+    const tailX = x + a.tail[0];
+    const tailY = y + a.tail[1];
+    // Stop the arrow just outside the point marker so the tip touches it.
+    const len = Math.hypot(x - tailX, y - tailY);
+    const gap = POINT_RADIUS + 1.5;
+    return {
+      ...a,
+      x,
+      y,
+      tailX,
+      tailY,
+      tipX: x - ((x - tailX) / len) * gap,
+      tipY: y - ((y - tailY) / len) * gap,
+      labelX: x + a.text[0],
+      labelY: y + a.text[1],
+    };
   });
 
   return (
@@ -75,9 +94,20 @@ export default function BacktestChart() {
         aria-label={`Backtested Portfolio A (Long-Term) and Portfolio B (Short-Term) value, mid-July 2026 to present. Final Portfolio A (Long-Term): ${currency(finalA)}. Final Portfolio B (Short-Term): ${currency(finalB)}.`}
       >
         <defs>
-          <marker id="annotationArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-            <path d="M0,0 L7,3.5 L0,7 Z" fill="currentColor" />
-          </marker>
+          {Object.entries(ANNOTATION_COLORS).map(([p, color]) => (
+            <marker
+              key={p}
+              id={`annotationArrow${p}`}
+              markerUnits="userSpaceOnUse"
+              markerWidth="9"
+              markerHeight="9"
+              refX="8"
+              refY="4.5"
+              orient="auto"
+            >
+              <path d="M0,0 L9,4.5 L0,9 Z" fill={color} />
+            </marker>
+          ))}
         </defs>
 
         {gridValues.map((v) => (
@@ -122,17 +152,37 @@ export default function BacktestChart() {
         </g>
 
         {annotations.map((a) => (
-          <g key={`${a.portfolio}-${a.date}`} className="text-slate-400" opacity="0.9">
+          <g key={`${a.portfolio}-${a.date}`}>
             <line
-              x1={a.labelX}
-              y1={a.labelY}
-              x2={a.x}
-              y2={a.y}
-              stroke="currentColor"
-              strokeWidth="1"
-              markerEnd="url(#annotationArrow)"
+              x1={a.tailX}
+              y1={a.tailY}
+              x2={a.tipX}
+              y2={a.tipY}
+              stroke={ANNOTATION_COLORS[a.portfolio]}
+              strokeWidth="2"
+              strokeLinecap="round"
+              markerEnd={`url(#annotationArrow${a.portfolio})`}
             />
-            <text x={a.labelX} y={a.labelY - 5} fontSize="10" fill="currentColor" textAnchor={a.anchor}>
+            <circle
+              cx={a.x}
+              cy={a.y}
+              r={POINT_RADIUS}
+              fill={ANNOTATION_COLORS[a.portfolio]}
+              stroke="#0b1120"
+              strokeWidth="1.5"
+            />
+            <text
+              x={a.labelX}
+              y={a.labelY}
+              fontSize="12.5"
+              fontWeight="600"
+              style={{ fill: '#ffffff', opacity: 1 }}
+              stroke="#0b1120"
+              strokeWidth="4"
+              strokeLinejoin="round"
+              paintOrder="stroke"
+              textAnchor={a.anchor}
+            >
               {a.label}
             </text>
           </g>
