@@ -45,9 +45,7 @@ export default function BacktestChart() {
       <p className="text-sm leading-relaxed text-slate-400">
         This chart shows what happened when I applied my Portfolio A (Long-Term) and
         Portfolio B (Short-Term) rules starting July 14, 2026, the day I actually funded
-        both portfolios, using real prices. It's still a backtest, not my actual
-        tracked results, since it simulates the rules automatically every single day,
-        while I actually check and trade by hand once a week. Each portfolio starts with
+        both portfolios, using real prices. Each portfolio starts with
         the real $25,000, split evenly across the 7 stocks and rounded down to whole
         shares, with the leftover kept as cash, same as the table below.
       </p>
