@@ -155,7 +155,7 @@ export default function Reflection() {
           page="Reflection"
           id="timelineIntro"
           className="text-slate-300"
-          text="A few milestones from my commit history."
+          text="A few milestone from my project journey"
         />
         <ol className="card space-y-2 border-l-2 border-l-slate-700 text-sm text-slate-300">
           <li className="pl-3">Jun-Jul 2026: Researched Python and JavaScript, brainstormed project ideas, and started journaling</li>
