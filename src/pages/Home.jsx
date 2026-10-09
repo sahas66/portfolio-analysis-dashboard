@@ -9,6 +9,18 @@ const QUICK_FACTS = [
 
 const TICKERS = ['VOO', 'BND', 'AAPL', 'JNJ', 'PG', 'XOM', 'COIN'];
 
+const LONG_TERM_STRATEGIES = [
+  'Buy-and-hold — buy once and leave positions alone, no active trading',
+  'Diversification — spread across 7 stocks and ETFs to reduce single-stock risk',
+  'Stop-loss discipline — only sell if a position drops 15% or more below cost',
+];
+
+const SHORT_TERM_STRATEGIES = [
+  'Mean reversion — buy when a stock trades below its own 5-day average price',
+  'Fixed take-profit / stop-loss — sell once a position moves 3% up or down',
+  'Active rebalancing — check and adjust positions weekly instead of holding',
+];
+
 export default function Home() {
   return (
     <section className="space-y-10">
@@ -77,6 +89,34 @@ export default function Home() {
             "different stock picks."
           }
         />
+      </div>
+
+      <div className="space-y-3">
+        <h2 className="text-lg font-semibold text-white">Strategies Used</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="card border-t-2 border-t-brand-blue">
+            <h3 className="mb-2 font-semibold text-brand-blue">Long-Term (Portfolio A)</h3>
+            <ul className="space-y-2 text-sm leading-relaxed text-slate-300">
+              {LONG_TERM_STRATEGIES.map((s) => (
+                <li key={s} className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="card border-t-2 border-t-brand-red">
+            <h3 className="mb-2 font-semibold text-brand-red">Short-Term (Portfolio B)</h3>
+            <ul className="space-y-2 text-sm leading-relaxed text-slate-300">
+              {SHORT_TERM_STRATEGIES.map((s) => (
+                <li key={s} className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-red" />
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div className="space-y-2">
