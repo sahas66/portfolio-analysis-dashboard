@@ -1,10 +1,10 @@
 import Editable from '../components/Editable.jsx';
 
 const QUICK_FACTS = [
-  { value: '$100,000', label: 'Starting balance', note: 'each portfolio' },
+  { value: '$25,000', label: 'Starting balance', note: 'each portfolio' },
   { value: 'Jul 14, 2026', label: 'Start date', note: 'both portfolios funded' },
-  { value: '$25,000', label: 'Invested', note: 'split evenly across 7' },
-  { value: '$75,000', label: 'Kept as cash', note: 'in each portfolio' },
+  { value: '7', label: 'Stocks & ETFs', note: 'split evenly' },
+  { value: '2', label: 'Portfolios', note: 'long-term vs. short-term' },
 ];
 
 const TICKERS = ['VOO', 'BND', 'AAPL', 'JNJ', 'PG', 'XOM', 'COIN'];
@@ -69,12 +69,12 @@ export default function Home() {
           id="allocation"
           className="leading-relaxed text-slate-300"
           text={
-            "Both portfolios started with $100,000 on July 14, 2026. I " +
-            "invested $25,000 evenly across the same 7 stocks and ETFs in each " +
-            "portfolio, and kept the remaining $75,000 as cash. Keeping the two " +
-            "portfolios identical at the start was intentional, and it means any " +
-            "difference in performance later can be traced back to the trading " +
-            "strategy itself, not just different stock picks."
+            "Both portfolios started with $25,000 on July 14, 2026, invested " +
+            "evenly across the same 7 stocks and ETFs in each portfolio. " +
+            "Keeping the two portfolios identical at the start was " +
+            "intentional, and it means any difference in performance later " +
+            "can be traced back to the trading strategy itself, not just " +
+            "different stock picks."
           }
         />
       </div>

@@ -32,10 +32,9 @@ export default function Methodology() {
           id="allocation"
           className="leading-relaxed text-slate-300"
           text={
-            "I started both portfolios with $100,000 on July 14, 2026. I " +
-            "split $25,000 evenly across 7 stocks and ETFs: VOO, BND, AAPL, " +
-            "JNJ, PG, XOM, and COIN. About $3,571 went into each one. I " +
-            "kept the other $75,000 as cash."
+            "I started both portfolios with $25,000 on July 14, 2026. I " +
+            "split it evenly across 7 stocks and ETFs: VOO, BND, AAPL, " +
+            "JNJ, PG, XOM, and COIN. About $3,571 went into each one."
           }
         />
       </div>
