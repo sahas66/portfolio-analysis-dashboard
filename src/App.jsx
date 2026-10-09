@@ -33,26 +33,27 @@ function EditModeToolbar() {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  // Hidden from visitors by default. Toggle with Ctrl+Shift+E (Cmd+Shift+E on
+  // Mac) — see the shortcut listener in AppContent. Once on, this toolbar
+  // appears so it can be switched off again without the shortcut.
+  if (!editMode) {
+    return null;
+  }
+
   return (
     <div className="ml-auto flex gap-2">
       <button
-        className={
-          editMode
-            ? 'rounded-lg border border-brand-amber bg-brand-amber px-3 py-1.5 text-sm font-medium text-white transition-colors'
-            : 'nav-link'
-        }
+        className="rounded-lg border border-brand-amber bg-brand-amber px-3 py-1.5 text-sm font-medium text-white transition-colors"
         onClick={toggleEditMode}
       >
-        {editMode ? 'Edit Mode: ON' : 'Edit Mode: OFF'}
+        Edit Mode: ON
       </button>
-      {editMode && (
-        <button
-          className="rounded-lg border border-brand-green px-3 py-1.5 text-sm font-medium text-brand-green transition-colors hover:bg-brand-green/10"
-          onClick={handleCopy}
-        >
-          {copied ? 'Copied!' : 'Copy edited content'}
-        </button>
-      )}
+      <button
+        className="rounded-lg border border-brand-green px-3 py-1.5 text-sm font-medium text-brand-green transition-colors hover:bg-brand-green/10"
+        onClick={handleCopy}
+      >
+        {copied ? 'Copied!' : 'Copy edited content'}
+      </button>
     </div>
   );
 }
@@ -70,13 +71,26 @@ function EditModeBanner() {
 function AppContent() {
   const [page, setPage] = useState(pageFromHash);
   const Page = PAGES[page];
-  const { editMode } = useEditMode();
+  const { editMode, toggleEditMode } = useEditMode();
 
   useEffect(() => {
     const onHashChange = () => setPage(pageFromHash());
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
+
+  // Secret shortcut to reveal Edit Mode: Ctrl+Shift+E (Cmd+Shift+E on Mac).
+  // The toggle button stays hidden from regular visitors otherwise.
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'e') {
+        e.preventDefault();
+        toggleEditMode();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [toggleEditMode]);
 
   return (
     <div className="mx-auto max-w-content px-6 py-10">
